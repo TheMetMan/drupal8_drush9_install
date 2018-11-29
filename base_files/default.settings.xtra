@@ -1,0 +1,18 @@
+# For File Based Site
+#
+$settings['bootstrap_config_storage'] = array(
+  'Drupal\Core\Config\BootstrapConfigStorageFactory',
+  'getFileStorage'
+);
+
+$config_directories = array(
+  CONFIG_ACTIVE_DIRECTORY => '../config/active',
+  CONFIG_SYNC_DIRECTORY => '../config/sync',
+);
+
+#to redirect the DocumentRoot to web folder in association with a correct .htaccess in DocumentRoot
+if (isset($GLOBALS['request']) and
+'/web/index.php' === $GLOBALS['request']->server->get('SCRIPT_NAME')) {
+$GLOBALS['request']->server->set('SCRIPT_NAME', '/index.php');
+}
+

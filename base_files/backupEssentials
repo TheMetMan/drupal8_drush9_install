@@ -1,0 +1,24 @@
+#!/bin/bash
+# 
+# script to backup the Drupal Database and Essential Settings
+# to a dated folder inside Backups Folder
+#
+dateStamp=`eval date +%Y-%m-%d_%H-%M-%S`
+if [[ $# -eq 0 ]] ; then
+    echo 'You must give a folder as an argument Not a Path'
+    echo ' You should use the name for this site if poss'
+    exit 1
+fi
+cd web
+DIRECTORY=~/Backups/$1/$dateStamp
+if [[ -d "${DIRECTORY}" && ! -L "${DIRECTORY}" ]] ; then
+    echo "Saving Database and Settings to $DIRECTORY"
+else
+    echo "Saving Database and Settings to $DIRECTORY"
+    mkdir -p "${DIRECTORY}"
+fi
+drush sql-dump --gzip --result-file "${DIRECTORY}/database.sql"
+cp sites/default/se* "${DIRECTORY}"
+echo "Finished"
+ls -lh "${DIRECTORY}"
+
