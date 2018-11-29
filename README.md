@@ -10,7 +10,8 @@ This is why we developed this script which will Install a Drupal 8 Site to the l
 # Requirements
 This is for Linux Only. We have not considered Windows. It will probably work on a Mac, but we have not tested it.
 You will need to have already installed Drush 9, Composer and Git globally.
-You will also need a Virtual Host in the web Server (Apache)setup to match your site.
+You will also need a Virtual Host in the web Server (Apache)setup to match your site. Set the DocumentRoot to be the Install Folder.
+The install puts a .htaccess file in the DocRoot to make the web/ folder the DocRoot and the correct setting in the sites/default/settings.php file to also make this work.
 You will need a database (mysql) ready to accept the installation.
 
 # Usage
@@ -25,3 +26,6 @@ and execute like so:
 `./createDrupalSite.sh`
 
 Wait a little ......
+
+# To Sync with Dev and Production
+Vary sorry not got this fully written up yet, but will have a link soon.
