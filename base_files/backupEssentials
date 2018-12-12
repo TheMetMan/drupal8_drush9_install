@@ -3,10 +3,12 @@
 # script to backup the Drupal Database and Essential Settings
 # to a dated folder inside Backups Folder
 #
+RED='\033[0;31m'
+NC='\033[0m' # No Color
 dateStamp=`eval date +%Y-%m-%d_%H-%M-%S`
 if [[ $# -eq 0 ]] ; then
-    echo 'You must give a folder as an argument Not a Path'
-    echo ' You should use the name for this site if poss'
+    printf "${RED}You must give a folder as an argument Not a Path\n"
+    printf "${RED} You should use the name for this site if poss\n"
     exit 1
 fi
 cd web

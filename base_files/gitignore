@@ -12,15 +12,18 @@
 # Because .gitignore can be specific to your site, this file has a different
 # name; updating Drupal core will not override your custom .gitignore file.
 
+backupEssentials
+exportConfigSync
+importConfigSync
+
 # Needed by Drush CIM Tools or drush version 9 import export commands
 config/active
 
 # Ignore core and vendor ONLY when managing dependencies with Composer.
-# core it is needed for git and drush synching
+# core
 # vendor
-Backups
 exportConfigSync
-importConfigSync
+Backups
 logs/*
 # Ignore configuration files that may contain sensitive information.
 web/sites/*/*settings*.php
@@ -28,12 +31,13 @@ web/sites/*/*services*.yml
 web/sites/*/example*.*
 
 # Ignore paths that contain user-generated content.
-web/sites/*/files/php
-web/sites/*/files/js
+#web/sites/*/files/php
+#web/sites/*/files/js
 private
 
 cache/
 files/
+vendor/
 web/robots.txt
 web/index.php
 web/update.php
@@ -44,6 +48,7 @@ web/web.config
 .eslintrc*
 .gitattributes
 .htaccess
+.git
 
 # Ignore SimpleTest multi-site environment.
 sites/simpletest
@@ -62,13 +67,15 @@ sites/simpletest
 simpletest
 
 # Ignore default text files
+LICENSE
+README.md
 /CHANGELOG.txt
 /COPYRIGHT.txt
 /INSTALL*.txt
-/LICENSE*
+/LICENSE.txt
 /MAINTAINERS.txt
 /UPGRADE.txt
-/README*
+/README.txt
 web/sites/all/README.txt
 web/sites/all/modules/README.txt
 web/sites/all/themes/README.txt
@@ -86,7 +93,7 @@ web/sites/all/themes/README.txt
 # ------------------------------------------------------------------------------
 # FG Files
 # ------------------------------------------------------------------------------
-FixPermissions.sh
+FixPermissions
 
 # ------------------------------------------------------------------------------
 # Linux
@@ -100,4 +107,5 @@ FixPermissions.sh
 
 # Linux trash folder which might appear on any partition or disk.
 .Trash-*
+
 

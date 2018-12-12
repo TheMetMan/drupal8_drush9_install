@@ -102,7 +102,7 @@ drush site-install standard \
 -y
 echo
 echo "copy useful files across and clean up a little"
-cp "$workingFolder/base_files/FixPermissions.sh" ../
+cp "$workingFolder/base_files/FixPermissions" ../
 cp "$workingFolder/base_files/backupEssentials" ../
 cp "$workingFolder/base_files/gitignore" ../.gitignore
 cp "$workingFolder/base_files/htaccess_docroot" ../.htaccess
@@ -116,9 +116,9 @@ echo "\$settings['trusted_host_patterns'] = array('$trustedHosts',);" >> ./sites
 echo "Creating a .htaccess access file in DocumentRoot to redirect Document Root to web"
 sed -i 's/SITEFOLDER/'$siteFolder'/' ../.htaccess
 sed -i 's/SITEFOLDER/'$siteFolder'/' exportConfigSync
-echo "Updating FixPermissions.sh User and Group"
-sed -i 's/USER/'$apacheUser'/' ../FixPermissions.sh
-sed -i 's/GROUP/'$apacheGroup'/' ../FixPermissions.sh
+echo "Updating FixPermissions User and Group"
+sed -i 's/USER/'$apacheUser'/' ../FixPermissions
+sed -i 's/GROUP/'$apacheGroup'/' ../FixPermissions
 drush updb
 drush cr
 echo
@@ -130,7 +130,7 @@ echo and creating a git repository
 git init
 echo "You need to Check, Add and Commit to repository"
 echo
-echo "now run FixPermissions.sh as ROOT from the $apacheRoot/$siteFolder folder"
+echo "now run FixPermissions as ROOT from the $apacheRoot/$siteFolder folder"
 echo
 echo "The $siteName Site should now be up and running so go the URL of the site"
 echo "Test it out and login to check the Reports->Status Report and Reports->Log Messages then tidy it up"
