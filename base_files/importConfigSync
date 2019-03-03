@@ -23,20 +23,12 @@ echo
 echo "Removing Unnecessary Settings"
 echo
 cp -v ../config/active/system.site.yml ../config/sync/
-cp -v ../config/active/contact*.yml ../config/sync/
-cp -v ../config/active/shortcut.set.default.yml ../config/sync/
-cp -v ../config/active/field.field.contact_message.*.yml ../config/sync/
-cp -v ../config/active/field.storage.contact_message.*.yml ../config/sync/
-cp -v ../config/active/core.entity_form_display.contact_message*.yml ../config/sync/
-cp -v ../config/active/core.entity_form_display.contact_form*.yml ../config/sync/
-cp -v ../config/active/core.entity_view_display.contact_message*.yml ../config/sync/
-cp -v ../config/active/core.entity_view_display.contact_form*.yml ../config/sync/
-cp -v ../config/active/workbench_email.workbench_email_template.*.yml ../config/sync/
 echo
 drush cim sync
 echo
 drush updb
 drush cr
+git stash
 echo "Finished - Ready to test the updates"
 echo
 
