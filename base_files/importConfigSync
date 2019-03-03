@@ -22,7 +22,7 @@ echo "Importing the Settings from config/sync"
 echo
 echo "Removing Unnecessary Settings"
 echo
-cp -v ../config/active/system.site.yml ../config/sync/
+cp -v config/active/system.site.yml config/sync/
 echo
 drush cim sync
 echo
