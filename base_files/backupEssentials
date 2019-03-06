@@ -11,7 +11,6 @@ if [[ $# -eq 0 ]] ; then
     printf "${RED} You should use the name for this site if poss\n"
     exit 1
 fi
-cd web
 DIRECTORY=~/Backups/$1/$dateStamp
 if [[ -d "${DIRECTORY}" && ! -L "${DIRECTORY}" ]] ; then
     echo "Saving Database and Settings to $DIRECTORY"
@@ -20,7 +19,7 @@ else
     mkdir -p "${DIRECTORY}"
 fi
 drush sql-dump --gzip --result-file "${DIRECTORY}/database.sql"
-cp sites/default/se* "${DIRECTORY}"
+cp web/sites/default/se* "${DIRECTORY}"
 echo "Finished"
 ls -lh "${DIRECTORY}"
 

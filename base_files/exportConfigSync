@@ -7,7 +7,6 @@
 # to a dated folder inside Backups Folder
 #
 dateStamp=`eval date +%Y-%m-%d_%H-%M-%S`
-cd web
 DIRECTORY=~/Backups/SITEFOLDER/$dateStamp
 if [[ -d "${DIRECTORY}" && ! -L "${DIRECTORY}" ]] ; then
     echo "Saving Database and Settings to $DIRECTORY"
@@ -16,17 +15,15 @@ else
     mkdir -p "${DIRECTORY}"
 fi
 drush sql-dump --gzip --result-file "${DIRECTORY}/database.sql"
-cp sites/default/se* "${DIRECTORY}"
+cp web/sites/default/se* "${DIRECTORY}"
 echo "Finished"
 ls -lh "${DIRECTORY}"
 echo "Exporting the Settings to config/sync"
 echo
 drush cex sync -y
 echo
-echo "Some Settings will transfer this site data eg Title, Branding emails etc"
-echo "which we do NOT Want, but the importConfigSync script takes care of this"
-echo
-echo
 echo "Finished - Ready to git commit -am ..... and push"
 echo
-
+echo "This script and the importConfigSync assume you have already"
+echo "installed the drupal/config_ignore module and added 'system.site'"
+echo "to the ignore list"

@@ -90,7 +90,6 @@ cat "$workingFolder/base_files/default.settings.xtra" >> ./web/sites/default/def
 cp ./web/sites/default/default.settings.php ./web/sites/default/settings.php
 cp ./web/sites/default/default.services.yml ./web/sites/default/services.yml
 cat "$workingFolder/base_files/default.services.xtra" >> ./web/sites/default/services.yml
-cd web/
 echo 'Install Site using Drush'
 drush site-install standard \
 --db-url="mysql://$dbUser:$dbPwd@localhost:3306/$db" \
@@ -102,29 +101,28 @@ drush site-install standard \
 -y
 echo
 echo "copy useful files across and clean up a little"
-cp "$workingFolder/base_files/FixPermissions" ../
-cp "$workingFolder/base_files/backupEssentials" ../
-cp "$workingFolder/base_files/gitignore" ../.gitignore
-cp "$workingFolder/base_files/htaccess_docroot" ../.htaccess
-cp "$workingFolder/base_files/*ConfigSync" ../
-
+cp "$workingFolder/base_files/FixPermissions" ./
+cp "$workingFolder/base_files/backupEssentials" ./
+echo "Copying a .gitignore file for you"
+cp "$workingFolder/base_files/gitignore" ./.gitignore
+cp "$workingFolder/base_files/htaccess_docroot" ./.htaccess
+echo "Copying import and export Sync scripts for you"
+cp "$workingFolder/base_files/importConfigSync" ./
+cp "$workingFolder/base_files/exportConfigSync" ./
 echo "adding Private Files Path and Trusted Hosts to settings.php file"
-chmod 666 ./sites/default/settings.php
-echo "\$settings['file_private_path'] = '$privatePath';" >> ./sites/default/settings.php
-echo "\$settings['trusted_host_patterns'] = array('$trustedHosts',);" >> ./sites/default/settings.php 
-
+chmod 666 web/sites/default/settings.php
+echo "\$settings['file_private_path'] = '$privatePath';" >> web/sites/default/settings.php
+echo "\$settings['trusted_host_patterns'] = array('$trustedHosts',);" >> web/sites/default/settings.php 
 echo "Creating a .htaccess access file in DocumentRoot to redirect Document Root to web"
-sed -i 's/SITEFOLDER/'$siteFolder'/' ../.htaccess
-sed -i 's/SITEFOLDER/'$siteFolder'/' exportConfigSync
+sed -i "s,SITEFOLDER,$siteFolder," .htaccess
+sed -i "s,SITEFOLDER,$siteFolder," exportConfigSync
+sed -i "s,SITEFOLDER,$siteFolder," importConfigSync
 echo "Updating FixPermissions User and Group"
-sed -i 's/USER/'$apacheUser'/' ../FixPermissions
-sed -i 's/GROUP/'$apacheGroup'/' ../FixPermissions
+sed -i "s,USER,$apacheUser," FixPermissions
+sed -i "s,GROUP,$apacheGroup," FixPermissions
 drush updb
 drush cr
 echo
-cd "$apacheRoot/$siteFolder/"
-echo "Copying a .gitignore file for you"
-cp $workingFolder/base_files/gitignore .gitignore
 echo
 echo and creating a git repository
 git init
@@ -132,8 +130,20 @@ echo "You need to Check, Add and Commit to repository"
 echo
 echo "now run FixPermissions as ROOT from the $apacheRoot/$siteFolder folder"
 echo
-echo "The $siteName Site should now be up and running so go the URL of the site"
-echo "Test it out and login to check the Reports->Status Report and Reports->Log Messages then tidy it up"
+echo "The $siteName Site should now be up and running so go the URL of the site and log in as $acName"
+echo "Test it out, check the Reports->Status Report and Reports->Log Messages then tidy it up"
 echo 
-echo "There is more info regarding a git workflow at http://themetman.net/content/drupal-cms"
+echo "Now add the following modules for starters using 'composer require' command"
+echo "'drupal/admin_toolbar' 'drupal/config_ignore' 'drupal/pathauto'"
+echo
+echo "The scripts 'exportConfigSync' and 'importConfigSync' assume you have already"
+echo "installed the drupal/config_ignore module and added 'system.site' to the ignore list"
+echo
+echo
+echo "Then AFTER installing the 'drupal/config_ignore' module"
+echo "remember to export your site settings using the exportConfigSync script"
+echo
+echo "Then use git to add and commit and push"
+echo 
+echo "There is more info regarding a git workflow at https://themetman.net/drupal"
 echo

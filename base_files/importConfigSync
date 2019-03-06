@@ -4,7 +4,6 @@
 # and delete unneeded settings (Ignore) as in CMI Tools
 #
 dateStamp=`eval date +%Y-%m-%d_%H-%M-%S`
-cd web
 DIRECTORY=~/Backups/SITEFOLDER/$dateStamp
 if [[ -d "${DIRECTORY}" && ! -L "${DIRECTORY}" ]] ; then
     echo "Saving Database and Settings to $DIRECTORY"
@@ -13,22 +12,18 @@ else
     mkdir -p "${DIRECTORY}"
 fi
 drush sql-dump --gzip --result-file "${DIRECTORY}/database.sql"
-cp sites/default/se* "${DIRECTORY}"
+cp web/sites/default/se* "${DIRECTORY}"
 echo "Finished"
 ls -lh "${DIRECTORY}"
-
-cd web
 echo "Importing the Settings from config/sync"
-echo
-echo "Removing Unnecessary Settings"
-echo
-cp -v config/active/system.site.yml config/sync/
 echo
 drush cim sync
 echo
 drush updb
 drush cr
-git stash
 echo "Finished - Ready to test the updates"
 echo
+echo "This script and the importConfigSync assume you have already"
+echo "installed the drupal/config_ignore module and added 'system.site'"
+echo "to the ignore list"
 

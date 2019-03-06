@@ -22,4 +22,5 @@ chmod 444 web/sites/default/services.yml
 chmod u=rwx,g=rx,o=  vendor/drush/drush/drush
 echo "Setting FixPermissions to 750"
 chmod 750 FixPermissions
-
+chmod 750 backupEssentials
+chmod 750 *ConfigSync
