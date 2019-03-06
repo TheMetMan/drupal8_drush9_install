@@ -4,7 +4,7 @@ Bash Script to install a new Drupal 8 site using Composer and Drush for File Bas
 This project came from an attempt to develop a File Based Workflow for Drupal 8 and is developed from TheMetMan/drupal8_install also on GitHub. This one however used Drush version 9 and the drupal-composer/drupal-project for the download. 
 There are various methods out there, many using Composer. Unfortunately Composer is very memory hungry and would not run in our Hosting service with limited memory. My friend Rob the Bones and I had to find a way to install a Drupal 8 site for File Based Workflow, but the method requires a particular order which we discovered by trial and error. So lots of Install, Rip Down and Start Again. Very time comsuming!!
 We have found that installing Drupal 8 using Composer and Drush on the Local site, then Composer to update Locally. We then used Git to push/pull via a remote repo and this seemed to work well.
-Unfortunately Drush 9 will not work with CMI Tools for syncing the sites, so we had to develop a hack to prevent the site details overwriting each other. Not too dificult wonce the workflow was established.
+Drush 9 works well for syncing the sites, but we had to develop a method to prevent the site details overwriting each other. Not too dificult once the workflow was established and we discovered the drupal/config_ignore module.
 This is why we developed this script which will Install a Drupal 8 Site to the location of your choice, and in only a little over three minutes.
 
 # Requirements
@@ -28,4 +28,4 @@ and execute like so:
 Wait a little ......
 
 # To Sync with Dev and Production
-Vary sorry not got this fully written up yet, but will have a link soon.
+You can go [here](https://themetman.net/drupal-8-drush-git-development-workflow) to get more information on how to do this.
