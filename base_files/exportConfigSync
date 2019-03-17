@@ -22,9 +22,7 @@ echo "Exporting the Settings to config/sync"
 echo
 drush cex sync -y
 echo
-echo "Some Settings will transfer this site data eg Title, Branding emails etc"
-echo "which we do NOT Want, but the importConfigSync script takes care of this"
-echo
+git status
 echo
 echo "Finished - Ready to git commit -am ..... and push"
 echo
