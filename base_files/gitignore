@@ -15,6 +15,7 @@
 backupEssentials
 exportConfigSync
 importConfigSync
+runComposerUpdates
 
 # Needed by Drush CIM Tools or drush version 9 import export commands
 config/active
@@ -93,7 +94,7 @@ web/sites/all/themes/README.txt
 # ------------------------------------------------------------------------------
 # FG Files
 # ------------------------------------------------------------------------------
-FixPermissions
+FixPermissions.sh
 
 # ------------------------------------------------------------------------------
 # Linux
@@ -107,5 +108,4 @@ FixPermissions
 
 # Linux trash folder which might appear on any partition or disk.
 .Trash-*
-
 

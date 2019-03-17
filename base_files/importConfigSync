@@ -23,7 +23,6 @@ drush updb
 drush cr
 echo "Finished - Ready to test the updates"
 echo
-echo "This script and the importConfigSync assume you have already"
-echo "installed the drupal/config_ignore module and added 'system.site'"
-echo "to the ignore list"
+git status
+echo
 

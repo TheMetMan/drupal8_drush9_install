@@ -22,8 +22,10 @@ echo "Exporting the Settings to config/sync"
 echo
 drush cex sync -y
 echo
+echo "Some Settings will transfer this site data eg Title, Branding emails etc"
+echo "which we do NOT Want, but the importConfigSync script takes care of this"
+echo
+echo
 echo "Finished - Ready to git commit -am ..... and push"
 echo
-echo "This script and the importConfigSync assume you have already"
-echo "installed the drupal/config_ignore module and added 'system.site'"
-echo "to the ignore list"
+
